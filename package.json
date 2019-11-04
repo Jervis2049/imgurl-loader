@@ -1,0 +1,18 @@
+{
+  "name": "imgurl-loader",
+  "version": "1.0.0",
+  "description": "webpack中的js读取图片资源，返回资源列表给前端",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "图片预加载",
+    "获取图片资源路径"
+  ],
+  "author": "xiaojiecong",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^7.1.5"
+  }
+}
