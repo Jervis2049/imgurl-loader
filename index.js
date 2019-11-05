@@ -1,26 +1,28 @@
 const fs = require("fs")
 const path = require('path');
 const glob = require('glob');
+const loaderUtils = require('loader-utils');
 
-module.exports = function(content) {
+module.exports = function (content) {
+    const options = loaderUtils.getOptions(this) || {}; 
+    if(options.noCache)this.cacheable(false);
+    
     let fileReg = /__getPath\(([^\)]+)\)/gim;
-    let rootPath = path.join(this.options.context, "/src");
-    let filepath = this.context;
-    // console.log(this.options.context)
-    // console.log(filepath)
+    //自定义文件 context|| 从webpack 4开始，原先的this.options.context被改进为this.rootContext
+    let rootPath = options.context || this.rootContext || (this.options && this.options.context);
+    let srcPath = path.join(rootPath, "/src");
+    let filepath = this.context; //被处理的文件所在路径
     content = content.replace(fileReg, (ret, src) => {
         let pathName = src.replace(/'|"/g, "");
-
-        // console.log(path.join(rootPath, pathName))
-        let resList = glob.sync(path.join(rootPath, pathName) + "/*");
+        let resList = glob.sync(path.join(srcPath, pathName) + "/*");
         let result = '[';
         for (let i = 0; i < resList.length; i++) {
             let respath = path.relative(filepath, resList[i]).replace(/\\/g, "/")
             result += "require('" + respath + "')" + ","
         }
-        result = result.substr(0, result.length - 1) + "]";
+        result = result.substr(0,result.length-1) + "]";
         return result;
-        // console.log(result)
+       
     })
     return content;
 }

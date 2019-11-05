@@ -11,28 +11,29 @@ npm install imgurl-loader -D
 ## Webpack Config
 
 ```
-  plugins: [
-	...
-    new HappyPack({
-      id: "imgurl",
-      threadPool: happyThreadPool,
-      loaders: [
-        {
-          loader: 'imgurl-loader'
-        }
-      ]
-    })
-  ],
-  module:{
-	rules: [
-		{
-			test: /\.js$/, // 支持 js
-			exclude: [/node_modules/,/lib/],
-			include : /src/,
-			use: ['happypack/loader?id=imgurl']
-        },
-	],
-  }
+...
+  module: {
+    rules: [
+     {
+        test: /\.js$/, 
+        include:/src/,
+        use: [{
+          loader:'imgurl-loader'
+        }]
+      },
+      //图片处理
+    {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                outputPath: 'img',
+                name: '[name]_[contenthash:8].[ext]'
+            }
+        }]
+    }
+    ],
+  },
 ```
 
 
