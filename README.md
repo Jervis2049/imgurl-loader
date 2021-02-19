@@ -47,4 +47,4 @@ let resList = __getPath("img");
 
 ## Demo
 
-https://github.com/xiaojiecong/imgurl-loader-demo
+https://github.com/Jervis2049/imgurl-loader/tree/demo
