@@ -1,19 +1,23 @@
 {
-  "name": "imgurl-loader",
+  "name": "my-loader",
   "version": "1.0.0",
-  "description": "webpack中的js读取图片资源，返回资源列表给前端",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
-  "keywords": [
-    "图片预加载",
-    "获取图片资源路径"
-  ],
-  "author": "xiaojiecong",
+  "keywords": [],
+  "author": "Jervis",
   "license": "ISC",
-  "dependencies": {
-    "glob": "^7.1.5",
-    "loader-utils": "^1.2.3"
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "imgurl-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   }
 }
